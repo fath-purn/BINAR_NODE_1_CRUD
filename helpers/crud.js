@@ -19,6 +19,18 @@ function show(id) {
 }
 function update(id, title, body) {
 
+  const updatedPost = posts.data.map((post) => {
+    if (post.id === id) {
+      return {
+        id,
+        title,
+        body,
+      };
+    }
+    return post;
+  });
+
+  fs.writeFileSync('./database/posts.json', JSON.stringify({ id: posts.id, data: updatedPost }, null, 4));
 }
 function destroy(id) {
     let newPosts = posts.data.filter(post => post.id != id);
