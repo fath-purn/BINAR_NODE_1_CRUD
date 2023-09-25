@@ -15,12 +15,16 @@ function index() {
   console.log(data[1]);
 }
 
-function show(id) {
-  let readFile = fs.readFileSync("./database/posts.json", "utf-8");
-  
+function show(id) { }
+function update(id, title, body) {
+
 }
 
-function update(id, title, body) {}
-function destroy(id) {}
+function destroy(id) {
+    let newPosts = posts.data.filter(post => post.id != id);
+    posts.data = newPosts;
+
+    fs.writeFileSync('./database/posts.json', JSON.stringify(posts, null, 4));
+}
 
 module.exports = { create, index, show, update, destroy };
