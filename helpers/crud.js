@@ -11,7 +11,8 @@ function create(title, body) {
 
 function index() { }
 function show(id) { }
-const updatedPost = posts.data.map((post) => {
+function update(id, title, body) {
+  const updatedPost = posts.data.map((post) => {
     if (post.id === id) {
       return {
         id,
