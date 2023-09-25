@@ -7,3 +7,4 @@ create('test title', 'test data');
 // test show detail post by id
 // test update post by id
 // test delete post by id
+destroy(1);
