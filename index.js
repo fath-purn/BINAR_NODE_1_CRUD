@@ -7,6 +7,8 @@ create('test title', 'test data');
 index();
 
 // test show detail post by id
+show(5)
+
 // test update post by id
 // test delete post by id
 destroy(1);
