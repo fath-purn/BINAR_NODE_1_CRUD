@@ -6,4 +6,5 @@ create('test title', 'test data');
 // test show all post
 // test show detail post by id
 // test update post by id
+update(3, { title: 'bahasa pemrograman', body: 'mempelajari tentang berbagai macam bahasa pemrograman' });
 // test delete post by id
