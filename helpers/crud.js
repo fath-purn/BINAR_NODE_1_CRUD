@@ -15,6 +15,8 @@ function index() {
     console.log(data);
   }
 function show(id) {
+  let newPosts = posts.data.filter(post => post.id == id);
+    console.log(newPosts);
     
 }
 function update(id, title, body) {
