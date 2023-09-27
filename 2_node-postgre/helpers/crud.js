@@ -2,6 +2,8 @@ const fs = require('fs');
 const posts = require('../database/posts');
 const PostModel = require('../models/post');
 const pool = require('../database/postgres');
+const { resolve } = require('path');
+const { rejects } = require('assert');
 
 function create(title, body) {
     return new Promise(async (resolve, reject) => {
@@ -17,7 +19,14 @@ function create(title, body) {
 }
 
 function index() {
-    return posts.data;
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await pool.query("SELECT * FROM posts;");
+            resolve(result.rows);
+        } catch (err) {
+            return reject(err);
+        }
+    })
 }
 
 function show(id) {
@@ -41,16 +50,14 @@ function update(id, title, body) {
 }
 
 function destroy(id) {
-    return new Promise((resolve, reject) => {
-        let postIndex = posts.data.findIndex(post => post.id === id);
-
-        if (postIndex < 0) return reject(`post with id ${id} is doesn't exist!`);
-
-        posts.data.splice(postIndex, 1);
-
-        fs.writeFileSync('./database/posts.json', JSON.stringify(posts, null, 4));
-        resolve(`post with id ${id} is deleted!`);
-    });
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await pool.query("DELETE FROM posts WHERE id = $1 RETURNING *;", [id]);
+            resolve(result.rows[0]);
+        } catch (err) {
+            return reject(err);
+        }
+    })
 }
 
 module.exports = { create, index, show, update, destroy };
