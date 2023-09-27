@@ -4,6 +4,11 @@ const { create, index, show, update, destroy } = require('./helpers/crud');
 create('test title', 'test data');
 
 // test show all post
+index();
 // test show detail post by id
+show(5)
+
 // test update post by id
+update(3, { title: 'bahasa pemrograman', body: 'mempelajari tentang berbagai macam bahasa pemrograman' });
 // test delete post by id
+destroy(1);
