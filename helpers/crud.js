@@ -13,14 +13,14 @@ function index() {
     let readFile = fs.readFileSync("./database/posts.json", "utf-8");
     let data = JSON.parse(readFile).data;
     console.log(data);
-  }
+}
+
 function show(id) {
   let newPosts = posts.data.filter(post => post.id == id);
     console.log(newPosts);
-    
 }
-function update(id, title, body) {
 
+function update(id, title, body) {
   const updatedPost = posts.data.map((post) => {
     if (post.id === id) {
       return {
@@ -34,6 +34,7 @@ function update(id, title, body) {
 
   fs.writeFileSync('./database/posts.json', JSON.stringify({ id: posts.id, data: updatedPost }, null, 4));
 }
+
 function destroy(id) {
     let newPosts = posts.data.filter(post => post.id != id);
     posts.data = newPosts;
