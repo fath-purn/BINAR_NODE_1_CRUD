@@ -20,8 +20,8 @@ async function main() {
         // console.log(updatedPost);
 
         // // test delete post by id
-        // let deletedPost = await destroy(1);
-        // console.log(deletedPost);
+        let deletedPost = await destroy(1);
+        console.log(deletedPost);
     } catch (err) {
         console.log(err);
         
